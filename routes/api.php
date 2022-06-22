@@ -13,6 +13,15 @@ Route::prefix('auth')->namespace('Api')->group(function () {
 Route::middleware('auth:sanctum')->namespace('Api')->group(function () {
     Route::post('auth/logout', 'AuthController@logout');
 
+    ## category routes
+    Route::prefix('categories')->namespace('Category')->group(function () {
+        Route::get('/', 'CategoryController@index');
+        Route::get('/{id}', 'CategoryController@show');
+        Route::post('/', 'CategoryController@store');
+        Route::put('/{id}', 'CategoryController@update');
+        Route::delete('/{id}', 'CategoryController@delete');
+    });
+
     ## product routes
     Route::prefix('products')->namespace('Product')->group(function () {
         Route::get('/', 'ProductController@index');

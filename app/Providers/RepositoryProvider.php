@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 use App\Repository\User\UserRepository;
 use App\Repository\Product\ProductContract;
 use App\Repository\Product\ProductRepository;
+use App\Repository\Category\CategoryContract;
+use App\Repository\Category\CategoryRepository;
 
 class RepositoryProvider extends ServiceProvider
 {
@@ -17,6 +19,7 @@ class RepositoryProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(CategoryContract::class, CategoryRepository::class);
         $this->app->bind(ProductContract::class, ProductRepository::class);
         $this->app->bind(UserContract::class, UserRepository::class);
     }

@@ -103,7 +103,7 @@ class ProductController extends Controller
      * @param  ProductUpdateRequest  $request
      * @return JsonResponse|mixed
      */
-    public function update(int $id, ProductUpdateRequest $request): mixed
+    public function update(ProductUpdateRequest $request, int $id): mixed
     {
         try {
             $data = $request->except('product_image');
@@ -113,7 +113,7 @@ class ProductController extends Controller
                 $data = array_merge($data, ['product_image' => $path]);
             }
             return $this->successResponse([
-                'message' => "Product created successfully",
+                'message' => "Product updated successfully",
                 'data'    => $this->productContract->update($id, $data),
             ]);
         } catch (Exception $e) {
