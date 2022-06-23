@@ -3,14 +3,21 @@
 use Illuminate\Support\Facades\Route;
 
 ## non-authorized routes.
-Route::prefix('auth')->namespace('Api')->group(function () {
+Route::prefix('auth')->group(function () {
     Route::post('login', 'AuthController@login');
     Route::post('register', 'AuthController@register');
 });
 
+## cart routes.
+Route::prefix('cart')->namespace('Cart')->group(function () {
+    Route::post('/', 'CartController@store');
+    Route::put('/{id}', 'CartController@update');
+    Route::delete('/{id}', 'CartController@delete');
+    Route::get('/', 'CartController@index');
+});
 
 ## authorized routes
-Route::middleware('auth:sanctum')->namespace('Api')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::post('auth/logout', 'AuthController@logout');
 
     ## category routes

@@ -10,7 +10,10 @@ class Cart extends Model
 {
     use HasFactory;
 
+    protected $table = 'cart';
+
     protected $fillable = ['user_id', 'product_id', 'session_id', 'qty'];
+    protected $casts = ['session_id' => 'int', 'qty' => 'int'];
 
     /**
      * @return BelongsTo
