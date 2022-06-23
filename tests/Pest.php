@@ -11,6 +11,10 @@
 |
 */
 
+use App\Models\User;
+
+use function Pest\Laravel\post;
+
 uses(Tests\TestCase::class)->in('Feature');
 
 /*
@@ -43,3 +47,13 @@ function something()
 {
     // ..
 }
+
+function loginUser()
+{
+    $user = User::factory()->create();
+    return post('api/auth/login', [
+        'email'    => $user->email,
+        'password' => 'password',
+    ])->json()['data'];
+}
+
